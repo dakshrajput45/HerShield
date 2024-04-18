@@ -29,16 +29,13 @@ class _MyRegisterState extends State<MyRegister> {
         "aadhaar_no": aadharController.text,
         "userName": userNameController.text
       };
-      //print(registerBody);
       var response = await http.post(
         Uri.parse(registration),
         headers: {"Content-type": "application/json"},
         body: jsonEncode(registerBody),
       );
-      //print("HTTP request successful");
       var jsonResponse = jsonDecode(response.body);
       print("daksh-> ${jsonResponse['status']}");
-      //print(st);
       if (jsonResponse['status']) {
         //print("chla kya");
         Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyApp()));
