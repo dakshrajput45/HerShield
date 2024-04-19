@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:hershield_1/resource/post_card.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key}); // Pass key to super constructor
@@ -21,8 +21,8 @@ class _MyAppState extends State<MyApp> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            width: 200, // Adjust image width
-            height: 200, // Adjust image height
+            width: 250, // Adjust image width
+            height: 250, // Adjust image height
             child: Image.asset('images/logo.png'),
           ),
           ElevatedButton(
@@ -57,69 +57,76 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-              topTitle,
-              style: const TextStyle(color: Colors.black,
-              ),
-            ),
-          backgroundColor: Colors.blue,
-          centerTitle: true,
+      backgroundColor: const Color.fromARGB(255, 230, 203, 235),
+      appBar: AppBar(
+        title: Text(
+          topTitle,
+          style: const TextStyle(
+            color: Colors.black,
+          ),
         ),
-        body: Center(
-            child: currentIndex == 1
-                ? buildHomeScreen()
-                : currentIndex == 0
-                    ? const BuildCommunityScreen()
-                    : const BuildProfileScreen()),
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-                label: 'Feed',
-                icon: SizedBox(
-                  width: 30, // Adjust image width
-                  height: 30, // Adjust image height
-                  child: Image.asset('images/community.png'),
-                )),
-            BottomNavigationBarItem(
-                label: 'HOME',
-                icon: SizedBox(
-                  width: 30,
-                  height: 30,
-                  child: Image.asset("images/home.png"),
-                )),
-            BottomNavigationBarItem(
-              label: 'Profile',
+        backgroundColor: const Color.fromARGB(255, 198, 67, 221),
+        centerTitle: true,
+      ),
+      body: Center(
+          child: currentIndex == 1
+              ? buildHomeScreen()
+              : currentIndex == 0
+                  ? const BuildCommunityScreen()
+                  : const BuildProfileScreen()),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+              label: 'Feed',
+              icon: SizedBox(
+                width: 30, // Adjust image width
+                height: 30, // Adjust image height
+                child: Image.asset('images/community.png'),
+              )),
+          BottomNavigationBarItem(
+              label: 'HOME',
               icon: SizedBox(
                 width: 30,
                 height: 30,
-                child: Image.asset("images/account.png"),
-              ),
-            )
-          ],
-          currentIndex: currentIndex,
-          onTap: (int index) {
-            setState(() {
-              currentIndex = index;
-              topTitle = currentIndex == 2
-                  ? "Profile Section"
-                  : currentIndex == 0
-                      ? "Community Page"
-                      : "Shield";
-            });
-          },
-        ),
+                child: Image.asset("images/home.png"),
+              )),
+          BottomNavigationBarItem(
+            label: 'Profile',
+            icon: SizedBox(
+              width: 30,
+              height: 30,
+              child: Image.asset("images/account.png"),
+            ),
+          )
+        ],
+        currentIndex: currentIndex,
+        onTap: (int index) {
+          setState(() {
+            currentIndex = index;
+            topTitle = currentIndex == 2
+                ? "Profile Section"
+                : currentIndex == 0
+                    ? "Community Page"
+                    : "Shield";
+          });
+        },
+      ),
     );
   }
 }
+
 class BuildCommunityScreen extends StatelessWidget {
   const BuildCommunityScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const Scaffold(
+      backgroundColor: Colors.black12,
+      body: PostCard(),
+    );
   }
 }
+
 
 class BuildProfileScreen extends StatelessWidget {
   const BuildProfileScreen({super.key});
@@ -127,38 +134,54 @@ class BuildProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      persistentFooterButtons: <Widget>[
-        Row(
+      backgroundColor: const Color.fromARGB(255, 230, 203, 235),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ElevatedButton(
+            const SizedBox(height: 40),
+            const CircleAvatar(
+              backgroundImage: NetworkImage(
+                  "https://images.unsplash.com/photo-1712313275295-105a8ab7bb1f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D"),
+              radius: 50,
+            ),
+            SizedBox(height: 20),
+            const Text(
+              'UserName: User',
+              style: TextStyle(fontSize: 24, color: Colors.black54),
+            ),
+            SizedBox(height: 10),
+            const Text(
+              'Email:user@gmail.com',
+              style: TextStyle(fontSize: 18, color: Colors.black54),
+            ),
+            SizedBox(height: 10),
+            const Text(
+              'Aadhaar Number: XXXX XXXX XXXX',
+              style: TextStyle(fontSize: 18, color: Colors.black54),
+            ),
+            ElevatedButton.icon(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const AboutUsPage()),
-                );
+             );
               },
-              child: Row(
-                children: [
-                  Image.asset(
-                    'images/aboutus-icon.png', // Replace 'images/aboutus-icon.png' with your image asset path
-                    width: 24, // Adjust the width of the image
-                    height: 24, // Adjust the height of the image
-                  ),
-                  const SizedBox(width: 8), // Add spacing between icon and text
-                  const Text('About us'),
-                ],
-              ),
+              icon: Icon(Icons.edit),
+              label: Text('About US'),
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 }
 
+
 class AboutUsPage extends StatelessWidget {
   const AboutUsPage({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

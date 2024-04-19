@@ -57,7 +57,7 @@ class _MyRegisterState extends State<MyRegister> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('images/register.png'), fit: BoxFit.cover),
+            image: AssetImage('images/login.png'), fit: BoxFit.cover),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -214,9 +214,9 @@ class _MyRegisterState extends State<MyRegister> {
                               ),
                               CircleAvatar(
                                 radius: 30,
-                                backgroundColor: const Color(0xff4c505b),
+                                backgroundColor: Colors.white,
                                 child: IconButton(
-                                  color: Colors.white,
+                                  color: Colors.purple,
                                   onPressed: () {
                                     //print("yes");
                                     registerUser();

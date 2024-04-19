@@ -33,6 +33,8 @@ dependencies:
   http: ^1.2.1
   shared_preferences: ^2.2.3
   jwt_decoder: ^2.0.1
+  url_launcher: ^6.2.6
+  image_picker: ^1.1.0
 
 
 

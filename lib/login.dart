@@ -78,7 +78,7 @@ class _MyloginState extends State<Mylogin> {
             Container(
               padding: const EdgeInsets.only(left: 35, top: 170),
               child: const Text(
-                'Jai \nShree Ram',
+                'Login To \nHerShield',
                 style: TextStyle(color: Colors.white, fontSize: 33),
               ),
             ),
@@ -136,11 +136,10 @@ class _MyloginState extends State<Mylogin> {
                         ),
                         CircleAvatar(
                           radius: 30,
-                          backgroundColor: const Color(0xff4c505b),
+                          backgroundColor: Colors.white,
                           child: IconButton(
-                            color: Colors.red,
+                            color: Colors.purple,
                             onPressed: () {
-                              print("kra");
                                loginUser();
                             },
                             icon: const Icon(Icons.arrow_forward),
@@ -167,7 +166,9 @@ class _MyloginState extends State<Mylogin> {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed((context), 'home');
+                          },
                           child: const Text(
                             'Forget Password',
                             style:
